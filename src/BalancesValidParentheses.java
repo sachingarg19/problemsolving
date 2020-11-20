@@ -84,3 +84,19 @@ class Solution {
         return !strStack.empty() && strStack.pop() == c ? true : false;
     }
 }
+
+// Alternate solution
+/* 
+ public boolean isValid(String s) {
+        int len = s.length();
+        while(len/2 > 0){
+            if(s.contains("()")) s = s.replace("()", "");
+            if(s.contains("{}")) s = s.replace("{}","");
+            if(s.contains("[]")) s = s.replace("[]","");
+            --len;
+        }
+        
+        return s.length() >=1 ? false: true;
+   }     
+
+*/
