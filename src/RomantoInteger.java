@@ -74,7 +74,27 @@ class Solution {
         romanToIntMap.put("M",1000);
        return parseRomentoInt(s);
     }
-    
+     // another optimal way
+    private int convertRomentoInt(String s) {
+        int result = 0;
+        for(int i=0; i < s.length(); i++) {
+            int v = romanToIntMap.get(s.charAt(i)+"");
+            if(i+1 < s.length()) {
+                int v1 = romanToIntMap.get(s.charAt(i+1)+"");
+                if(v >= v1) {
+                    result += v;
+                } else {
+                    result += v1 - v;
+                    i++;
+                }
+            } else {
+                result += v;
+            }
+        }
+        
+        return result;
+    }
+ 
     // Brute force
     private int processRomtoInt(String s) {
         int count = 0;
