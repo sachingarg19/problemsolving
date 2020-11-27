@@ -45,45 +45,48 @@ Explanation: The number "-91283472332" is out of the range of a 32-bit signed in
 
 class StringtoIntegerAtoi {
     String INTREGEX = "^[0-9]*$";
+
+    public static void main(String[] args) {
+        System.out.println(new StringtoIntegerAtoi().myAtoi("-91283472332"));
+        System.out.println(new StringtoIntegerAtoi().myAtoi("words and 987"));
+        System.out.println(new StringtoIntegerAtoi().myAtoi("4193 with words"));
+        System.out.println(new StringtoIntegerAtoi().myAtoi("-3245"));
+        System.out.println(new StringtoIntegerAtoi().myAtoi("3245"));
+    }
+
     public int myAtoi(String str) {
         String[] strArr = str.trim().split(" ");
         return processATOI(strArr[0]);
     }
-    
-    private int processATOI(String str){
-        int num=0;
+
+    private int processATOI(String str) {
+        int num = 0;
         try {
             String x = str.charAt(0) + "";
-            if(!x.matches(INTREGEX)){
-                str = buildStr(str,x);
-            }else {
-                 str = buildStr(str,x);
-            }
-            num = (int)Double.parseDouble(str);
-             if(num < Math.pow(-2,31)) {
-                num = (int)Math.pow(-2,31);
-            }else if(num > Math.pow(2,31)-1) {
-                num = (int)Math.pow(2,31) -1;
+            str = buildStr(str, x);
+            num = (int) Double.parseDouble(str);
+            if (num < Math.pow(-2, 31)) {
+                num = (int) Math.pow(-2, 31);
+            } else if (num > Math.pow(2, 31) - 1) {
+                num = (int) Math.pow(2, 31) - 1;
             }
             return num;
-        }catch(Exception ex){
+        } catch (Exception ex) {
             System.out.println(ex);
             return 0;
         }
     }
-    
-    private String buildStr(String str, String x){
-         for(int i=1; i <= str.length()-1; i++){
-            System.out.println(i);
-            String y = str.charAt(i)+"";
-            System.out.println(y);
-            if(y.matches(INTREGEX)){
-                x +=y;     
-            } else{
-             break;
+
+    private String buildStr(String str, String x) {
+        for (int i = 1; i <= str.length() - 1; i++) {
+            String y = str.charAt(i) + "";
+            if (y.matches(INTREGEX)) {
+                x += y;
+            } else {
+                break;
             }
         }
         System.out.println(x);
-      return x;
+        return x;
     }
 }
