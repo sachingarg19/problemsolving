@@ -52,8 +52,52 @@ Ref: https://www.youtube.com/watch?v=jQJyWcRPEpE&ab_channel=NareshGupta
 class Solution {
     Map<String, List<String>> map = new HashMap<>();
     public List<String> wordBreak(String s, List<String> wordDict) {
-        // It's DFS approach
-        // Check if dict contains s then store in result;
+        //Check if dict contains s then store in result;
+        // iterate over the string index by index
+        // concate each index and check if present in dict or not
+        // if present then get the sublist by making recursive calls
+        // loop over the sublist and add left and right strings
+        // take out subdict and perform the same
+      return wordBreakDicIteration(s, wordDict);
+    }
+    
+    // Iteration over dict is faster
+    /**
+    https://www.youtube.com/watch?v=uR3RElKnrkU&ab_channel=anotherdigitalnomad
+    Scenatio case 1 catsanddog wordDict = ["cat", "cats", "and", "sand", "dog"]
+    --
+    cat --> all other words
+    cat --> sand -->all other words
+    cat --> sand --> dog --> all other words " "
+    Output -- > ["cat sand dog"]
+    
+    Scenario case 2 
+    cats --> all other words
+    cats --> and --> all other words
+    cats --> and --> dog
+    Output --> ["cats and dog"]
+    */
+    public List<String> wordBreakDicIteration(String s, List<String> wordDict) {
+        List<String> result = new ArrayList();
+        if(map.containsKey(s)) return map.get(s);
+        if(s.isEmpty()) result.add(s);
+        
+        for(String word: wordDict) {
+            if(s.startsWith(word)) {
+                String subStr = s.substring(word.length());
+                List<String> otherWordList = wordBreakDicIteration(subStr, wordDict);
+                for(String otherWord: otherWordList) {
+                    String space = otherWord.isEmpty()? "": " ";
+                    result.add(word + space + otherWord);
+                }
+            }
+        }
+        map.put(s, result);
+        return result;
+    }
+    
+    public List<String> wordBreakStringIteration(String s, List<String> wordDict) {
+        //Check if dict contains s then store in result;
         // iterate over the string index by index
         // concate each index and check if present in dict or not
         // if present then get the sublist by making recursive calls
