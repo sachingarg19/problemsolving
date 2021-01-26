@@ -1,4 +1,4 @@
-/*
+/**
 26. Remove Duplicates from Sorted Array
 Easy
 
@@ -48,7 +48,7 @@ Constraints:
 0 <= nums.length <= 3 * 104
 -104 <= nums[i] <= 104
 nums is sorted in ascending order.
-*/
+**/
 
 class Solution {
     public int removeDuplicates(int[] nums) {

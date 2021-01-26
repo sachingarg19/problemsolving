@@ -23,29 +23,30 @@ Output: "bb"
 
 */
 
-import java.util.Map.Entry;
 class LongestPalindromicSubstring {
-    public String longestPalindrome(String s) {
-        System.out.println(s);
-        if (s.isEmpty()) return "";
-		int start = 0, end =0;
-		for(int i = 0; i < s.length(); i++){
+	public String longestPalindrome(String s) {
+		System.out.println(s);
+		if (s.isEmpty())
+			return "";
+		int start = 0, end = 0;
+		for (int i = 0; i < s.length(); i++) {
 			int len1 = stringLength(s, i, i);
-			int len2 = stringLength(s, i, i+1);
+			int len2 = stringLength(s, i, i + 1);
 			int longestWordLen = Math.max(len1, len2);
-			if(longestWordLen > end-start){
-				start = i - (longestWordLen -1)/2;
-				end = i + longestWordLen/2;
+			if (longestWordLen > end - start) {
+				start = i - (longestWordLen - 1) / 2;
+				end = i + longestWordLen / 2;
 			}
 		}
 
-		return s.substring(start, end+1);
-    }
-    private static int stringLength(String s, int left, int right){
-		while(left >=0 && right < s.length() && s.charAt(left) == s.charAt(right)){
-			left --;
-			right ++;
+		return s.substring(start, end + 1);
+	}
+
+	private static int stringLength(String s, int left, int right) {
+		while (left >= 0 && right < s.length() && s.charAt(left) == s.charAt(right)) {
+			left--;
+			right++;
 		}
-		return right -left -1;
+		return right - left - 1;
 	}
 }

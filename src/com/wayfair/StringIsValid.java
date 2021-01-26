@@ -17,9 +17,11 @@ public class StringIsValid {
 	 */
 	static String regex = "[A-Z][a-z]*";
 	static String str = "Sachin";
+
 	public static void main(String[] args) {
 		validateString(str);
 	}
+
 	private static void validateString(String str2) {
 		Pattern pattern = Pattern.compile(regex);
 		Matcher match = pattern.matcher(str2);

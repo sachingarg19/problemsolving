@@ -1,3 +1,6 @@
+import java.util.HashSet;
+import java.util.Set;
+
 /*
 3. Longest Substring Without Repeating Characters
 Medium
