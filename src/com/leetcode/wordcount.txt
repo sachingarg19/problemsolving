@@ -1,0 +1,6 @@
+word count example
+sachin
+garg
+sachin garg
+test
+sachin
